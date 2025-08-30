@@ -1,0 +1,38 @@
+{
+  "name": "express_auth_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest --detectOpenHandles --forceExit",
+    "start": "nodemon server.js"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.13.8",
+    "nodemailer": "^7.0.5",
+    "slugify": "^1.6.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-typescript": "^7.27.1",
+    "babel-jest": "^30.0.5",
+    "jest": "^30.0.5",
+    "nodemon": "^2.0.22",
+    "supertest": "^7.1.4"
+  }
+}
