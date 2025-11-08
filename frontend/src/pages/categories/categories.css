@@ -1,0 +1,19 @@
+.category-container {
+  padding: 30px;
+}
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+.page-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}

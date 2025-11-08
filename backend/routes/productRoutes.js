@@ -10,42 +10,64 @@ const router = express.Router();
  * @desc    Create a new product
  */
 
-router.post('/add-product',verify, verifyRole("seller"), async (req, res) => {
-    try {
-        const { title, imageLinks, category, price, discountPrice, description,
-            stock, deliveryType, brand, sku, tags, isFeatured } = req.body;
-        const createdBy = req.user._id; 
-        // Check if category exists
-        console.log('Category ID:', category);
-        const categoryData = await Category.findById(category);
-        if (!categoryData) {
-            return res.status(400).json({ message: "Invalid category ID" });
-        }
 
-        // Create product
-        const newProduct = new Product({
-            title,
-            imageLinks,
-            category,
-            price,
-            discountPrice,
-            description,
-            deliveryType,
-            brand,
-            sku,
-            tags,
-            isFeatured,
-            createdBy,
-            stock,
 
-        });
+router.post('/add-product', verify, verifyRole("seller"), async (req, res) => {
+  try {
+    const {
+      title,
+      imageLinks,
+      category, // now category name
+      price,
+      discountPrice,
+      description,
+      stock,
+      deliveryType,
+      brand,
+      sku,
+      tags,
+      isFeatured
+    } = req.body;
 
-        await newProduct.save();
-        res.status(201).json({ message: "Product created successfully", product: newProduct });
-    } catch (error) {
-        res.status(500).json({ message: "Server error", error: error.message });
+    const createdBy = req.user._id;
+
+    // ✅ Find or create category by name
+    let categoryData = await Category.findOne({ name: new RegExp(`^${category}$`, 'i') });
+    if (!categoryData) {
+      categoryData = new Category({ name: category });
+      await categoryData.save();
+      console.log(`Created new category: ${category}`);
     }
+
+    // ✅ Create product linked to that category
+    const newProduct = new Product({
+      title,
+      imageLinks,
+      category: categoryData._id,
+      price,
+      discountPrice,
+      description,
+      deliveryType,
+      brand,
+      sku,
+      tags,
+      isFeatured,
+      createdBy,
+      stock
+    });
+
+    await newProduct.save();
+
+    res.status(201).json({
+      message: `Product created successfully under category '${categoryData.name}'`,
+      product: newProduct
+    });
+  } catch (error) {
+    console.error('Error creating product:', error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 });
+
 
 /**
  * @route   GET /api/products/title/:title
