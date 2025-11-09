@@ -17,6 +17,7 @@ const allowedOrigins = [
   , // your Vercel frontend
 ];
 
+
 // Setup CORS properly
 app.use(
   cors({
