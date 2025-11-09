@@ -14,7 +14,7 @@ const DB_URI = process.env.MONGO_URI;
 //Allow both local and deployed frontends
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://sr-shopping.vercel.app/api", // your Vercel frontend
+  , // your Vercel frontend
 ];
 
 // Setup CORS properly

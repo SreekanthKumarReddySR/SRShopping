@@ -13,7 +13,7 @@ const app = express();
 
 // ✅ Enable CORS for all origins (you can restrict to your frontend URL if needed)
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:3000", 
+  origin: "https://sr-shopping.vercel.app/api" ||  process.env.FRONTEND_URL || "http://localhost:3000", 
   credentials: true, // allow cookies if you use them
 }));
 
