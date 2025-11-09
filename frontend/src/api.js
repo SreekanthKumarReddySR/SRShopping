@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getToken, setToken, removeToken } from './utils/token';
+import { getToken, setToken } from './utils/token';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 const api = axios.create({ baseURL: API_BASE, timeout: 15000 });
