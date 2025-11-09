@@ -12,9 +12,13 @@ import cors from "cors";
 const app = express();
 
 // ✅ Enable CORS for all origins (you can restrict to your frontend URL if needed)
+// process.env.FRONTEND_URL || 
 app.use(cors({
-  origin: "https://sr-shopping.vercel.app/api" ||  process.env.FRONTEND_URL || "http://localhost:3000", 
-  credentials: true, // allow cookies if you use them
+  origin: [
+    'http://localhost:3000',          // for local React
+    'https://sr-shopping.vercel.app'  // for deployed React
+  ],
+  credentials: true,
 }));
 
 app.use(express.json());
