@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "jest --detectOpenHandles --forceExit",
+    "test": "jest --config ./jest.config.cjs --detectOpenHandles --forceExit",
     "start": "nodemon server.js"
   },
   "jest": {
